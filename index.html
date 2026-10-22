@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QuickMove by Hasbulla – TS3 plugin</title>
+<style>
+  :root {
+    --bg:#12141a; --card:#1c1f29; --card2:#232734; --line:#2c3040;
+    --text:#e8eaf0; --muted:#9aa0b0; --accent:#4f8cff; --accent-text:#fff;
+    --warn:#ffb454; --warn-bg:rgba(255,180,84,.10);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg:#eef1f6; --card:#ffffff; --card2:#f4f6fa; --line:#dde1ea;
+      --text:#1a1d26; --muted:#5b6275; --accent:#2f6fed;
+      --warn:#9a5b00; --warn-bg:rgba(255,180,84,.18);
+    }
+  }
+  * { box-sizing:border-box; }
+  html { -webkit-text-size-adjust:100%; }
+  body {
+    margin:0; min-height:100vh; display:flex; align-items:flex-start; justify-content:center;
+    background:var(--bg); color:var(--text);
+    font-family:system-ui,"Segoe UI",Roboto,Arial,sans-serif; padding:24px 16px;
+  }
+  .card { background:var(--card); max-width:600px; width:100%; border-radius:16px; overflow:hidden;
+          border:1px solid var(--line); }
+
+  /* Zaglavlje je uvek tamno jer je BS logo beo */
+  .hero {
+    background:radial-gradient(120% 140% at 0% 0%, #1b2a4a 0%, #0e1016 60%);
+    padding:28px 28px 24px; color:#e8eaf0;
+  }
+  .logos { display:flex; align-items:center; gap:16px; margin-bottom:20px; }
+  .logos img { display:block; width:72px; height:72px; object-fit:cover; }
+  .logos .ts3 { border-radius:50%; }
+  .logos .bs  { object-fit:contain; }
+  .logos .sep { width:1px; height:44px; background:rgba(255,255,255,.18); }
+  .hero h1 { margin:0 0 6px; font-size:1.6rem; line-height:1.2; letter-spacing:-.01em; }
+  .hero .sub { margin:0; color:#aab1c3; font-size:.97rem; line-height:1.55; }
+
+  .body { padding:24px 28px 28px; }
+  h2 { margin:0 0 10px; font-size:1.05rem; }
+
+  .notice {
+    background:var(--warn-bg); border-left:3px solid var(--warn); border-radius:8px;
+    padding:12px 14px; margin:0 0 24px; font-size:.92rem; line-height:1.55;
+  }
+  .notice b { color:var(--warn); }
+
+  .feat { list-style:none; margin:0; padding:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .feat li { padding:14px 16px; border-top:1px solid var(--line); line-height:1.5; font-size:.95rem; }
+  .feat li:first-child { border-top:0; }
+  .feat b { display:block; margin-bottom:2px; }
+  .feat span { color:var(--muted); }
+  .where {
+    display:inline-block; margin-top:8px; padding:3px 10px; border-radius:999px;
+    background:var(--card2); border:1px solid var(--line); font-size:.8rem; color:var(--muted);
+  }
+
+  .warn { margin:16px 0 0; font-size:.9rem; line-height:1.55; color:var(--muted); }
+  .warn b { color:var(--text); }
+
+  .dl-box { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); }
+  label { display:block; margin:0 0 6px; font-weight:600; }
+  input {
+    width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--line);
+    background:var(--card2); color:var(--text); font-size:1rem;
+  }
+  input::placeholder { color:var(--muted); }
+  input:focus-visible, button:focus-visible, .btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+  button, .btn {
+    display:block; width:100%; margin-top:12px; padding:13px; border:0; border-radius:10px;
+    background:var(--accent); color:#fff; font-size:1rem; font-weight:600; text-align:center;
+    text-decoration:none; cursor:pointer;
+  }
+  button:hover, .btn:hover { filter:brightness(1.08); }
+  button:disabled { opacity:.6; cursor:default; }
+  .note { color:var(--muted); font-size:.82rem; margin:10px 0 0; line-height:1.5; }
+  .hidden { display:none; }
+  ol { padding-left:20px; line-height:1.7; font-size:.95rem; margin:0; }
+
+  @media (max-width:420px) {
+    .hero, .body { padding-left:18px; padding-right:18px; }
+    .logos img { width:60px; height:60px; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <header class="hero">
+    <div class="logos">
+      <img class="bs" src="bs_logo.png" alt="Balkan School logo">
+      <span class="sep" aria-hidden="true"></span>
+      <img class="ts3" src="ts3_admin_team.png" alt="TS3 Admin Team logo">
+    </div>
+    <h1>QuickMove by Hasbulla</h1>
+    <p class="sub">Plugin za TeamSpeak 3 koji ubrzava muvanje korisnika. Umesto selektovanja i prevlačenja, sve radiš desnim klikom.</p>
+  </header>
+
+  <main class="body">
+
+    <p class="notice"><b>Napomena:</b> plugin je podešen isključivo za Balkan School TS3 server i radi samo za TS3 Admin i više permisije.</p>
+
+    <h2>Šta plugin radi</h2>
+    <ul class="feat">
+      <li>
+        <b>Markiraj / skini marker</b>
+        <span>Markiraj koliko hoćeš ljudi. Kad klikneš na markiranog piše ti MARKIRAN crvenim slovima.</span>
+        <div class="where">Desni klik na korisnika</div>
+      </li>
+      <li>
+        <b>Muvaj markirane ovde</b>
+        <span>Svi koje si markirao će biti pomereni u izabrani kanal, nakon čega se markeri čiste.</span>
+        <div class="where">Desni klik na kanal</div>
+      </li>
+      <li>
+        <b>Muvaj u [BS] AFK</b>
+        <span>Jednim klikom šalješ korisnika u kanal [BS] AFK.</span>
+        <div class="where">Desni klik na korisnika</div>
+      </li>
+      <li>
+        <b>Muvaj markirane u [BS] AFK</b>
+        <span>Svi markirani idu u [BS] AFK odjednom.</span>
+        <div class="where">Desni klik na korisnika</div>
+      </li>
+      <li>
+        <b>Muvaj BS iz kanala u [BS] AFK</b>
+        <span>Muva samo korisnike sa grupom BS iz tog kanala. Svi ostali, na primer Gost, ostaju gde jesu.</span>
+        <div class="where">Desni klik na kanal</div>
+      </li>
+      <li>
+        <b>Prikaži markirane i Očisti markirane</b>
+        <span>Ispiše ko je trenutno markiran ili skine sve markere odjednom.</span>
+        <div class="where">Prikaži: desni klik na korisnika. Očisti: desni klik na kanal.</div>
+      </li>
+    </ul>
+
+    <p class="warn">Za sve opcije traži se desni klik, pa u meniju izaberi <b>QuickMove by Hasbulla</b>. Da bi muvanje radilo, na serveru moraš imati pravo da muvaš korisnike.</p>
+
+    <div class="dl-box">
+      <div id="step1">
+        <label for="name">Tvoje ime / nick</label>
+        <input id="name" type="text" maxlength="40" placeholder="npr. Marko" autocomplete="off">
+        <button id="go" type="button">Skini plugin</button>
+        <p class="note">Ime tražim samo da vidim koliko ljudi koristi plugin i da li je koristan. Ne tražim ništa drugo.</p>
+      </div>
+
+      <div id="step2" class="hidden">
+        <a id="dl" class="btn" href="#" download>Preuzmi QuickMove.ts3_plugin</a>
+        <h2 style="margin-top:22px">Instalacija</h2>
+        <ol>
+          <li>Otvori preuzeti fajl dvoklikom (TeamSpeak 3 mora biti instaliran).</li>
+          <li>Potvrdi instalaciju kad ti TeamSpeak ponudi.</li>
+          <li>Uključi plugin u Tools → Options → Addons → Plugins.</li>
+        </ol>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ===== PODESI OVO =====
+// 1) Link do .ts3_plugin fajla. Ako je fajl u istom GitHub repou kao ova stranica, ostavi samo ime.
+var DOWNLOAD_URL = "QuickMove.ts3_plugin";
+// 2) Google Form: "Pošalji odgovor" URL (zameni viewform sa formResponse) i ID polja za ime
+var FORM_ACTION  = "https://docs.google.com/forms/d/e/1FAIpQLSeppgAydfGXzrETYfmwOjhrfJZcMHv7WaycPe-j-wVImCrqkA/formResponse";
+var FORM_ENTRY   = "entry.208229902";
+// ======================
+
+var nameInput = document.getElementById("name");
+var goBtn = document.getElementById("go");
+
+function reveal() {
+  document.getElementById("step1").classList.add("hidden");
+  document.getElementById("step2").classList.remove("hidden");
+  document.getElementById("dl").href = DOWNLOAD_URL || "#";
+}
+
+goBtn.addEventListener("click", function () {
+  var name = nameInput.value.trim();
+  if (!name) { nameInput.focus(); return; }
+  goBtn.disabled = true;
+
+  if (FORM_ACTION && FORM_ENTRY) {
+    var body = new URLSearchParams();
+    body.append(FORM_ENTRY, name);
+    fetch(FORM_ACTION, { method: "POST", mode: "no-cors", body: body })
+      .catch(function () {})
+      .then(reveal);
+  } else {
+    reveal();
+  }
+});
+
+nameInput.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") goBtn.click();
+});
+</script>
+</body>
+</html>
