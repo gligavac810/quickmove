@@ -153,7 +153,7 @@
         <form id="dlForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeppgAydfGXzrETYfmwOjhrfJZcMHv7WaycPe-j-wVImCrqkA/formResponse" method="POST" target="hidden_iframe">
           <label for="name">Tvoje ime / nick</label>
           <input id="name" name="entry.208229902" type="text" maxlength="40" placeholder="npr. Marko" autocomplete="off" required>
-          <button id="go" type="submit">Skini plugin (.zip)</button>
+          <button id="go" type="submit">Skini plugin (.rar)</button>
           <p class="note">Ime tražim samo da vidim koliko ljudi koristi plugin i da li je koristan. Ne tražim ništa drugo[cite: 1].</p>
         </form>
         <!-- Skriveni iframe sprečava preusmeravanje stranice na Google Formu -->
@@ -161,10 +161,10 @@
       </div>
 
       <div id="step2" class="hidden">
-        <a id="dl" class="btn" href="QuickMove.zip" download>Preuzmi QuickMove.zip</a>
+        <a id="dl" class="btn" href="QuickMove.rar" download>Preuzmi QuickMove.rar</a>
         <h2 style="margin-top:22px">Uputstvo za instalaciju</h2>
         <ol>
-          <li>Raspakuj preuzeti <b>QuickMove.zip</b> fajl.</li>
+          <li>Raspakuj preuzeti <b>QuickMove.rar</b> fajl.</li>
           <li>Pritisni <span class="code-inline">Win + R</span>, ukucaj <span class="code-inline">%appdata%\TS3Client\plugins</span> i pritisni Enter.</li>
           <li>Prekopiraj odgovarajući fajl u taj folder:
             <ul style="margin: 6px 0 0; padding-left: 18px; color:var(--muted);">
@@ -195,8 +195,8 @@ function reveal() {
   
   // Automatski pokreni preuzimanje ZIP fajla
   var downloadLink = document.createElement('a');
-  downloadLink.href = 'QuickMove.zip';
-  downloadLink.download = 'QuickMove.zip';
+  downloadLink.href = 'QuickMove.rar';
+  downloadLink.download = 'QuickMove.rar';
   document.body.appendChild(downloadLink);
   downloadLink.click();
   document.body.removeChild(downloadLink);
