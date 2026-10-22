@@ -25,14 +25,14 @@
     font-family:system-ui,"Segoe UI",Roboto,Arial,sans-serif; padding:24px 16px;
   }
   .card { background:var(--card); max-width:600px; width:100%; border-radius:16px; overflow:hidden;
-          border:1px solid var(--line); }
+          border:1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
 
   .hero {
     background:radial-gradient(120% 140% at 0% 0%, #1b2a4a 0%, #0e1016 60%);
     padding:28px 28px 24px; color:#e8eaf0;
   }
   .logos { display:flex; align-items:center; gap:16px; margin-bottom:20px; }
-  .logos img { display:block; width:72px; height:72px; object-fit:cover; }
+  .logos img { display:block; width:72px; height:72px; object-fit:cover; border-radius:12px; }
   .logos .ts3 { border-radius:50%; }
   .logos .bs  { object-fit:contain; }
   .logos .sep { width:1px; height:44px; background:rgba(255,255,255,.18); }
@@ -40,7 +40,7 @@
   .hero .sub { margin:0; color:#aab1c3; font-size:.97rem; line-height:1.55; }
 
   .body { padding:24px 28px 28px; }
-  h2 { margin:0 0 10px; font-size:1.05rem; }
+  h2 { margin:0 0 10px; font-size:1.15rem; color:var(--text); }
 
   .notice {
     background:var(--warn-bg); border-left:3px solid var(--warn); border-radius:8px;
@@ -49,9 +49,9 @@
   .notice b { color:var(--warn); }
 
   .feat { list-style:none; margin:0; padding:0; border:1px solid var(--line); border-radius:12px; overflow:hidden; }
-  .feat li { padding:14px 16px; border-top:1px solid var(--line); line-height:1.5; font-size:.95rem; }
+  .feat li { padding:14px 16px; border-top:1px solid var(--line); line-height:1.5; font-size:.95rem; background:var(--card); }
   .feat li:first-child { border-top:0; }
-  .feat b { display:block; margin-bottom:2px; }
+  .feat b { display:block; margin-bottom:2px; color:var(--text); }
   .feat span { color:var(--muted); }
   .where {
     display:inline-block; margin-top:8px; padding:3px 10px; border-radius:999px;
@@ -72,13 +72,22 @@
   button, .btn {
     display:block; width:100%; margin-top:12px; padding:13px; border:0; border-radius:10px;
     background:var(--accent); color:#fff; font-size:1rem; font-weight:600; text-align:center;
-    text-decoration:none; cursor:pointer;
+    text-decoration:none; cursor:pointer; box-shadow: 0 4px 12px rgba(79, 140, 255, 0.2);
+    transition: filter 0.2s, transform 0.1s;
   }
-  button:hover, .btn:hover { filter:brightness(1.08); }
+  button:hover, .btn:hover { filter:brightness(1.1); }
+  button:active, .btn:active { transform: scale(0.99); }
   button:disabled { opacity:.6; cursor:default; }
+  
   .note { color:var(--muted); font-size:.82rem; margin:10px 0 0; line-height:1.5; }
   .hidden { display:none; }
-  ol { padding-left:20px; line-height:1.7; font-size:.95rem; margin:0; }
+  
+  ol { padding-left:20px; line-height:1.7; font-size:.95rem; margin:0; color:var(--muted); }
+  ol li { margin-bottom: 8px; color:var(--text); }
+  ol li span.code-inline {
+    background:var(--card2); border:1px solid var(--line); padding:2px 6px; border-radius:4px;
+    font-family: monospace; font-size: 0.9em; color: var(--accent);
+  }
 
   @media (max-width:420px) {
     .hero, .body { padding-left:18px; padding-right:18px; }
@@ -144,19 +153,26 @@
         <form id="dlForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeppgAydfGXzrETYfmwOjhrfJZcMHv7WaycPe-j-wVImCrqkA/formResponse" method="POST" target="hidden_iframe">
           <label for="name">Tvoje ime / nick</label>
           <input id="name" name="entry.208229902" type="text" maxlength="40" placeholder="npr. Marko" autocomplete="off" required>
-          <button id="go" type="submit">Skini plugin</button>
+          <button id="go" type="submit">Skini plugin (.zip)</button>
           <p class="note">Ime tražim samo da vidim koliko ljudi koristi plugin i da li je koristan. Ne tražim ništa drugo[cite: 1].</p>
         </form>
-        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { reveal(); }"></iframe>
+        <!-- Skriveni iframe sprečava preusmeravanje stranice na Google Formu -->
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
       </div>
 
       <div id="step2" class="hidden">
-        <a id="dl" class="btn" href="#" download>Preuzmi QuickMove.ts3_plugin</a>
-        <h2 style="margin-top:22px">Instalacija</h2>
+        <a id="dl" class="btn" href="QuickMove.zip" download>Preuzmi QuickMove.zip</a>
+        <h2 style="margin-top:22px">Uputstvo za instalaciju</h2>
         <ol>
-          <li>Otvori preuzeti fajl dvoklikom (TeamSpeak 3 mora biti instaliran)[cite: 1].</li>
-          <li>Potvrdi instalaciju kad ti TeamSpeak ponudi[cite: 1].</li>
-          <li>Uključi plugin u Tools → Options → Addons → Plugins[cite: 1].</li>
+          <li>Raspakuj preuzeti <b>QuickMove.zip</b> fajl.</li>
+          <li>Pritisni <span class="code-inline">Win + R</span>, ukucaj <span class="code-inline">%appdata%\TS3Client\plugins</span> i pritisni Enter.</li>
+          <li>Prekopiraj odgovarajući fajl u taj folder:
+            <ul style="margin: 6px 0 0; padding-left: 18px; color:var(--muted);">
+              <li>Za 64-bitni TS3: prekopiraj <b>quickmove_win64.dll</b></li>
+              <li>Za 32-bitni TS3: prekopiraj <b>quickmove_win32.dll</b></li>
+            </ul>
+          </li>
+          <li>Restartuj TeamSpeak 3 i uključi plugin u <b>Tools → Options → Addons → Plugins</b>[cite: 1].</li>
         </ol>
       </div>
     </div>
@@ -165,18 +181,25 @@
 </div>
 
 <script>
-// ===== PODESI OVO =====
-var DOWNLOAD_URL = "QuickMove.rar";
-var submitted = false;
-// ======================
-
 var nameInput = document.getElementById("name");
 var form = document.getElementById("dlForm");
+var submitted = false;
 
 function reveal() {
+  if (submitted) return;
+  submitted = true;
+  
+  // Sakrij formu i prikaži sekciju za preuzimanje i uputstvo
   document.getElementById("step1").classList.add("hidden");
   document.getElementById("step2").classList.remove("hidden");
-  document.getElementById("dl").href = DOWNLOAD_URL || "#";
+  
+  // Automatski pokreni preuzimanje ZIP fajla
+  var downloadLink = document.createElement('a');
+  downloadLink.href = 'QuickMove.zip';
+  downloadLink.download = 'QuickMove.zip';
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
 }
 
 form.addEventListener("submit", function (e) {
@@ -187,12 +210,10 @@ form.addEventListener("submit", function (e) {
     return; 
   }
   
-  submitted = true;
-  
-  // Rezervni tajmer (1 sekunda) da se otključa download čak i ako pregledač blokira iframe onload događaj
+  // Forma se šalje u pozadinski iframe, a posle 800ms otključavamo ekran i skidamo zip
   setTimeout(function() {
     reveal();
-  }, 1000);
+  }, 800);
 });
 </script>
 </body>
