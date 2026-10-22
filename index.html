@@ -27,7 +27,6 @@
   .card { background:var(--card); max-width:600px; width:100%; border-radius:16px; overflow:hidden;
           border:1px solid var(--line); }
 
-  /* Zaglavlje je uvek tamno jer je BS logo beo */
   .hero {
     background:radial-gradient(120% 140% at 0% 0%, #1b2a4a 0%, #0e1016 60%);
     padding:28px 28px 24px; color:#e8eaf0;
@@ -97,64 +96,67 @@
       <img class="ts3" src="ts3_admin_team.png" alt="TS3 Admin Team logo">
     </div>
     <h1>QuickMove by Hasbulla</h1>
-    <p class="sub">Plugin za TeamSpeak 3 koji ubrzava muvanje korisnika. Umesto selektovanja i prevlačenja, sve radiš desnim klikom.</p>
+    <p class="sub">Plugin za TeamSpeak 3 koji ubrzava muvanje korisnika. Umesto selektovanja i prevlačenja, sve radiš desnim klikom[cite: 1].</p>
   </header>
 
   <main class="body">
 
-    <p class="notice"><b>Napomena:</b> plugin je podešen isključivo za Balkan School TS3 server i radi samo za TS3 Admin i više permisije.</p>
+    <p class="notice"><b>Napomena:</b> plugin je podešen isključivo za Balkan School TS3 server i radi samo za TS3 Admin i više permisije[cite: 1].</p>
 
     <h2>Šta plugin radi</h2>
     <ul class="feat">
       <li>
         <b>Markiraj / skini marker</b>
-        <span>Markiraj koliko hoćeš ljudi. Kad klikneš na markiranog piše ti MARKIRAN crvenim slovima.</span>
-        <div class="where">Desni klik na korisnika</div>
+        <span>Markiraj koliko hoćeš ljudi. Kad klikneš na markiranog piše ti MARKIRAN crvenim slovima[cite: 1].</span>
+        <div class="where">Desni klik na korisnika[cite: 1]</div>
       </li>
       <li>
         <b>Muvaj markirane ovde</b>
-        <span>Svi koje si markirao će biti pomereni u izabrani kanal, nakon čega se markeri čiste.</span>
-        <div class="where">Desni klik na kanal</div>
+        <span>Svi koje si markirao će biti pomereni u izabrani kanal, nakon čega se markeri čiste[cite: 1].</span>
+        <div class="where">Desni klik na kanal[cite: 1]</div>
       </li>
       <li>
         <b>Muvaj u [BS] AFK</b>
-        <span>Jednim klikom šalješ korisnika u kanal [BS] AFK.</span>
-        <div class="where">Desni klik na korisnika</div>
+        <span>Jednim klikom šalješ korisnika u kanal [BS] AFK[cite: 1].</span>
+        <div class="where">Desni klik na korisnika[cite: 1]</div>
       </li>
       <li>
         <b>Muvaj markirane u [BS] AFK</b>
-        <span>Svi markirani idu u [BS] AFK odjednom.</span>
-        <div class="where">Desni klik na korisnika</div>
+        <span>Svi markirani idu u [BS] AFK odjednom[cite: 1].</span>
+        <div class="where">Desni klik na korisnika[cite: 1]</div>
       </li>
       <li>
         <b>Muvaj BS iz kanala u [BS] AFK</b>
-        <span>Muva samo korisnike sa grupom BS iz tog kanala. Svi ostali, na primer Gost, ostaju gde jesu.</span>
-        <div class="where">Desni klik na kanal</div>
+        <span>Muva samo korisnike sa grupom BS iz tog kanala. Svi ostali, na primer Gost, ostaju gde jesu[cite: 1].</span>
+        <div class="where">Desni klik na kanal[cite: 1]</div>
       </li>
       <li>
         <b>Prikaži markirane i Očisti markirane</b>
-        <span>Ispiše ko je trenutno markiran ili skine sve markere odjednom.</span>
-        <div class="where">Prikaži: desni klik na korisnika. Očisti: desni klik na kanal.</div>
+        <span>Ispiše ko je trenutno markiran ili skine sve markere odjednom[cite: 1].</span>
+        <div class="where">Prikaži: desni klik na korisnika. Očisti: desni klik na kanal[cite: 1].</div>
       </li>
     </ul>
 
-    <p class="warn">Za sve opcije traži se desni klik, pa u meniju izaberi <b>QuickMove by Hasbulla</b>. Da bi muvanje radilo, na serveru moraš imati pravo da muvaš korisnike.</p>
+    <p class="warn">Za sve opcije traži se desni klik, pa u meniju izaberi <b>QuickMove by Hasbulla</b>. Da bi muvanje radilo, na serveru moraš imati pravo da muvaš korisnike[cite: 1].</p>
 
     <div class="dl-box">
       <div id="step1">
-        <label for="name">Tvoje ime / nick</label>
-        <input id="name" type="text" maxlength="40" placeholder="npr. Marko" autocomplete="off">
-        <button id="go" type="button">Skini plugin</button>
-        <p class="note">Ime tražim samo da vidim koliko ljudi koristi plugin i da li je koristan. Ne tražim ništa drugo.</p>
+        <form id="dlForm" action="https://docs.google.com/forms/d/e/1FAIpQLSeppgAydfGXzrETYfmwOjhrfJZcMHv7WaycPe-j-wVImCrqkA/formResponse" method="POST" target="hidden_iframe">
+          <label for="name">Tvoje ime / nick</label>
+          <input id="name" name="entry.208229902" type="text" maxlength="40" placeholder="npr. Marko" autocomplete="off" required>
+          <button id="go" type="submit">Skini plugin</button>
+          <p class="note">Ime tražim samo da vidim koliko ljudi koristi plugin i da li je koristan. Ne tražim ništa drugo[cite: 1].</p>
+        </form>
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { reveal(); }"></iframe>
       </div>
 
       <div id="step2" class="hidden">
         <a id="dl" class="btn" href="#" download>Preuzmi QuickMove.ts3_plugin</a>
         <h2 style="margin-top:22px">Instalacija</h2>
         <ol>
-          <li>Otvori preuzeti fajl dvoklikom (TeamSpeak 3 mora biti instaliran).</li>
-          <li>Potvrdi instalaciju kad ti TeamSpeak ponudi.</li>
-          <li>Uključi plugin u Tools → Options → Addons → Plugins.</li>
+          <li>Otvori preuzeti fajl dvoklikom (TeamSpeak 3 mora biti instaliran)[cite: 1].</li>
+          <li>Potvrdi instalaciju kad ti TeamSpeak ponudi[cite: 1].</li>
+          <li>Uključi plugin u Tools → Options → Addons → Plugins[cite: 1].</li>
         </ol>
       </div>
     </div>
@@ -164,15 +166,12 @@
 
 <script>
 // ===== PODESI OVO =====
-// 1) Link do .ts3_plugin fajla. Ako je fajl u istom GitHub repou kao ova stranica, ostavi samo ime.
 var DOWNLOAD_URL = "QuickMove.ts3_plugin";
-// 2) Google Form: "Pošalji odgovor" URL (zadrži formResponse) i ID polja za ime
-var FORM_ACTION  = "https://docs.google.com/forms/d/e/1FAIpQLSeppgAydfGXzrETYfmwOjhrfJZcMHv7WaycPe-j-wVImCrqkA/formResponse";
-var FORM_ENTRY   = "entry.208229902";
+var submitted = false;
 // ======================
-https://docs.google.com/forms/d/e/1FAIpQLSeppgAydfGXzrETYfmwOjhrfJZcMHv7WaycPe-j-wVImCrqkA/viewform?usp=pp_url&entry.208229902=test
+
 var nameInput = document.getElementById("name");
-var goBtn = document.getElementById("go");
+var form = document.getElementById("dlForm");
 
 function reveal() {
   document.getElementById("step1").classList.add("hidden");
@@ -180,24 +179,20 @@ function reveal() {
   document.getElementById("dl").href = DOWNLOAD_URL || "#";
 }
 
-goBtn.addEventListener("click", function () {
+form.addEventListener("submit", function (e) {
   var name = nameInput.value.trim();
-  if (!name) { nameInput.focus(); return; }
-  goBtn.disabled = true;
-
-  if (FORM_ACTION && FORM_ENTRY) {
-    var body = new URLSearchParams();
-    body.append(FORM_ENTRY, name);
-    fetch(FORM_ACTION, { method: "POST", mode: "no-cors", body: body })
-      .catch(function () {})
-      .then(reveal);
-  } else {
-    reveal();
+  if (!name) { 
+    e.preventDefault();
+    nameInput.focus(); 
+    return; 
   }
-});
-
-nameInput.addEventListener("keydown", function (e) {
-  if (e.key === "Enter") goBtn.click();
+  
+  submitted = true;
+  
+  // Rezervni tajmer (1 sekunda) da se otključa download čak i ako pregledač blokira iframe onload događaj
+  setTimeout(function() {
+    reveal();
+  }, 1000);
 });
 </script>
 </body>
